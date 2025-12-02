@@ -249,7 +249,9 @@ h3 {
     font-family: var(--font-serif);
     font-size: 4vw;
     text-align: center;
-    mix-blend-mode: overlay;
+    color: #fff;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    padding: 0 5%;
 }
 
 /* Contact */
