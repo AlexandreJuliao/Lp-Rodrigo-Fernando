@@ -49,28 +49,30 @@ h3 {
 }
 
 .huge-title {
-    font-size: 12vw;
+    font-size: 11vw;
     line-height: 0.85;
     text-transform: uppercase;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     display: flex;
     flex-direction: column;
     text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .huge-title .line {
-    font-weight: 600;
-    /* Bold for Rodrigo */
+    font-weight: 500;
+    font-family: var(--font-main);
+    /* Outfit */
 }
 
 .huge-title .indent {
-    margin-left: 15vw;
+    margin-left: 12vw;
+    font-family: var(--font-serif);
+    /* Playfair Display */
     font-weight: 400;
     font-style: italic;
-    /* Italic for Fernando */
-    color: var(--text-color);
-    /* Solid color instead of outline */
-    -webkit-text-stroke: 0;
+    color: var(--accent-color);
+    /* Gold touch for elegance */
+    opacity: 0.9;
 }
 
 .section-title {
@@ -163,47 +165,53 @@ h3 {
 
 /* Services */
 /* Approach Grid */
+/* Approach Grid */
 .approach-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin-top: 4rem;
+    gap: 4rem;
+    /* Increased gap */
+    margin-top: 6rem;
 }
 
 .approach-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 3rem;
+    background: transparent;
+    /* Cleaner look */
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    /* Top border only for minimalist feel */
+    padding: 2rem 0;
+    /* Less padding, more open */
     transition: all 0.4s ease;
     position: relative;
-    overflow: hidden;
 }
 
 .approach-card:hover {
-    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-10px);
     border-color: var(--accent-color);
-    transform: translateY(-5px);
 }
 
 .card-number {
-    font-family: var(--font-main);
-    font-size: 0.9rem;
+    font-family: var(--font-serif);
+    /* Serif for elegance */
+    font-size: 1.2rem;
     color: var(--accent-color);
-    opacity: 0.7;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     display: block;
+    font-style: italic;
 }
 
 .approach-card h3 {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    /* Larger titles */
     margin-bottom: 1.5rem;
-    line-height: 1.1;
+    line-height: 1;
 }
 
 .approach-card p {
-    color: #999;
-    font-size: 1rem;
+    color: #aaa;
+    font-size: 1.1rem;
     line-height: 1.6;
+    max-width: 90%;
 }
 
 .section-number {
@@ -211,6 +219,9 @@ h3 {
     font-size: 1rem;
     margin-bottom: 1rem;
     color: var(--accent-color);
+    font-family: var(--font-main);
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 /* Full Image Break */
@@ -451,23 +462,31 @@ footer {
     color: #888;
 }
 
-/* Why Portugal */
 .why-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 4rem;
-    margin-top: 4rem;
+    gap: 6rem;
+    /* More breathing room */
+    margin-top: 6rem;
+}
+
+.why-item {
+    position: relative;
+    padding-left: 2rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    /* Vertical line guide */
 }
 
 .why-item h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     color: var(--text-color);
 }
 
 .why-item p {
     color: #999;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-size: 1.1rem;
 }
 
 /* Testimonials */
@@ -501,8 +520,32 @@ footer {
 }
 
 /* Responsive */
+/* Responsive */
 @media (max-width: 768px) {
+    .section {
+        padding: 6rem 0;
+    }
 
+    .agency-section {
+        padding: 6rem 0;
+    }
+
+    .huge-title {
+        font-size: 14vw;
+    }
+
+    .huge-title .indent {
+        margin-left: 2rem;
+    }
+
+    .section-title {
+        font-size: 12vw;
+    }
+
+    /* Grids to 1 column */
+    .vision-layout,
+    .contact-layout,
+    .approach-grid,
     .stats-grid,
     .why-grid,
     .testimonials-grid {
@@ -510,40 +553,47 @@ footer {
         gap: 3rem;
     }
 
-    .stat-value {
-        font-size: 3rem;
-    }
-
-    .huge-title {
-        font-size: 18vw;
-    }
-
-    .huge-title .indent {
-        margin-left: 0;
-    }
-
-    .vision-layout {
-        grid-template-columns: 1fr;
-        gap: 4rem;
+    /* Adjust Images */
+    .hero-img {
+        object-position: 75% center;
+        /* Focus on the right side where the person is */
     }
 
     .vision-image-wrapper {
         height: 50vh;
+        order: -1;
+        /* Image first for visual impact */
     }
 
-    .services-list {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+    .contact-image {
+        height: 40vh;
+        margin-top: 2rem;
     }
 
-    .contact-layout {
-        grid-template-columns: 1fr;
-    }
-
+    /* Typography adjustments */
     .big-contact-title {
         font-size: 15vw;
     }
 
+    .stat-value {
+        font-size: 3.5rem;
+    }
+
+    .agency-details h3 {
+        font-size: 2rem;
+    }
+
+    /* Navigation */
+    .navbar {
+        padding: 1.5rem 5%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+    }
+
+    .logo {
+        width: 160px;
+    }
+
+    /* Disable custom cursor */
     .cursor-follower {
         display: none;
     }
