@@ -1,0 +1,27 @@
+{
+  "name": "lp-rodrigo-fernando",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexandreJuliao/Lp-Rodrigo-Fernando.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AlexandreJuliao/Lp-Rodrigo-Fernando/issues"
+  },
+  "homepage": "https://github.com/AlexandreJuliao/Lp-Rodrigo-Fernando#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "multer": "^2.0.2"
+  }
+}

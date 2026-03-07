@@ -1,0 +1,56 @@
+[
+  {
+    "id": "ribamar-luxury-condo",
+    "title": "Ribamar Luxury Condominium",
+    "location": "Ericeira, Portugal",
+    "price": "3.750.000 €",
+    "description": "Erguido sobre a linha costeira do Atlântico, na encantadora povoação de Ribamar, Ericeira, o Ribamar Luxury Condominium é um exclusivo conjunto de apenas três moradias privadas, onde as únicas coisas partilhadas são os acabamentos premium, as vistas desafogadas sobre o mar e um estilo de vida costeiro verdadeiramente único.\n\nCada residência possui uma identidade arquitetónica distinta, concebida para oferecer o máximo de privacidade, exclusividade e sofisticação. Com interiores amplos, luz natural abundante e vistas deslumbrantes sobre o oceano, cada detalhe foi pensado para elevar o quotidiano a uma verdadeira forma de arte.\n\nImagine acordar todos os dias com uma vista panorâmica sobre o Atlântico, uma paisagem viva que transforma cada momento num sonho realizado.\n\nAs moradias estão equipadas com piso radiante para aquecimento e arrefecimento, janelas duplas em alumínio da prestigiada marca Cortizo, sistema de ventilação mecânica controlada (VMC) e pré-instalação de ar condicionado central, garantindo conforto absoluto e eficiência em todas as estações.\n\nA cozinha equipada com eletrodomésticos Siemens integra-se harmoniosamente nas áreas sociais, proporcionando o cenário ideal para receber família e amigos, tanto no interior como no exterior.\n\nRibamar Luxury Condominium — onde o luxo encontra a brisa do oceano.",
+    "features": [
+      "Vista de praia",
+      "Janelas duplas",
+      "Persianas elétricas",
+      "Vista de primeira linha",
+      "Piso aquecido",
+      "Perto de comodidades"
+    ],
+    "images": [
+      "assets/portfolio-1.jpg"
+    ]
+  },
+  {
+    "id": "mafra-estate-villa",
+    "title": "Mafra Estate Villa",
+    "location": "Mafra, Portugal",
+    "price": "1.800.000 €",
+    "description": "Esta propriedade é para quem procura o raro: uma moradia sólida, cheia de carisma, inserida num terreno vasto e singular que ultrapassa os 41 mil metros quadrados. Um espaço onde a natureza e a habitação se equacionam num equilíbrio pouco comum no mercado.\n\nO imóvel oferece uma construção ampla em dois pisos com áreas generosas, pensada para quem valoriza amplitude e funcionalidade.\n\nUm terreno digno de uma pequena propriedade rural, com bioma próprio e potencial para múltiplas utilizações de lazer, agricultura ou até projetos paisagísticos.\n\nPiscina para desfrutar dos dias longos em total privacidade, rodeada por um extenso alpendre e áreas exteriores que convidam ao convívio.\n\nÁreas interiores com múltiplos usos, incluindo salas de estar e jantar que se prolongam para o exterior, promovendo uma experiência de vida fluída. Quartos espaçosos com a privacidade das suítes, destacando a suíte principal e mais uma segunda suíte.\n\nEsta moradia é um convite para um estilo de vida onde o tempo e o espaço ganham outra dimensão.",
+    "features": [
+      "Terreno de 41.000 m²",
+      "Piscina Privada",
+      "Boa exposição solar",
+      "Zona Tranquila",
+      "Luxo Privado",
+      "Painéis Solares"
+    ],
+    "images": [
+      "assets/portfolio-2.jpg"
+    ]
+  },
+  {
+    "id": "quinta-do-sol-villa",
+    "title": "Quinta do Sol Villa",
+    "location": "Mafra, Portugal",
+    "price": "1.350.000 €",
+    "description": "Benvindo à Quinta do Sol.\n\nEsta casa, hoje totalmente recuperada, encontra-se junto ao antigo Aqueduto Real de Mafra, que no século XVIII transportava água das nascentes da zona de Vilãs até ao Convento de Mafra.\n\nSegundo a tradição local, aqui viveu um sacristão ou irmão leigo ligado ao Convento, responsável pela vigilância do aqueduto neste troço e pela manutenção diária do fluxo de água. Conta-se que este homem cultivava hortas em redor da casa, fornecendo legumes, ervas aromáticas e plantas medicinais para a cozinha conventual.\n\nHoje no terreno, ainda se encontra uma mesa em pedra desse tempo, mesa que depois fez parte de uma paragem obrigatória dos Caminhos de Santiago.\n\nCasa com muita história sem dúvida e com um charme como nenhuma outra. Venha visitar!",
+    "features": [
+      "Tipologia: T4",
+      "Terreno: 5000 m²",
+      "Vista de campo",
+      "Janelas duplas",
+      "Portão elétrico",
+      "História Única"
+    ],
+    "images": [
+      "assets/portfolio-3.jpg"
+    ]
+  }
+]

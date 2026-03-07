@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/logo-icon.png">
+    <link rel="shortcut icon" href="assets/logo-icon.png" type="image/png">
+    <title>Imóvel | Rodrigo Fernando</title>
+    <meta name="description" content="Detalhes do imóvel exclusivo - Rodrigo Fernando Consultoria Imobiliária.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="cursor-follower"></div>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="assets/logo.png" alt="Rodrigo Fernando Logo">
+        </a>
+        <a href="#contact" class="nav-cta-btn">Fale Comigo</a>
+    </nav>
+
+    <main id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- SINGLE PROPERTY HERO -->
+            <header class="property-hero">
+                <!-- Back Button -->
+                <a href="index.html" class="back-home-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>Voltar ao Início</span>
+                </a>
+
+                <div class="property-hero-bg">
+                    <img id="prop-main-img" src="assets/placeholder.jpg" alt="Imóvel" class="parallax-img">
+                </div>
+                <div class="property-hero-content">
+                    <span class="property-badge" id="prop-status">Disponível</span>
+                    <h1 class="property-title" id="prop-title">A Carregar...</h1>
+                    <p class="property-location-large" id="prop-location">Aguarde por favor</p>
+                </div>
+            </header>
+
+            <!-- PROPERTY DETAILS -->
+            <section class="section single-property-section">
+                <div class="container">
+                    <div class="property-top-details">
+                        <div class="price-block">
+                            <span class="price-label">Valor de Investimento</span>
+                            <span class="price-value" id="prop-price">--</span>
+                        </div>
+                        <div class="metrics-grid">
+                            <div class="metric-item">
+                                <span class="metric-label">Área Bruta</span>
+                                <span class="metric-value" id="prop-area">--</spanArea>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Tipologia</span>
+                                <span class="metric-value" id="prop-rooms">--</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Casas de Banho</span>
+                                <span class="metric-value" id="prop-baths">--</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Cert. Energética</span>
+                                <span class="metric-value" id="prop-energy">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="property-content-layout">
+                        <!-- LEFT COLUMN: Description + Features -->
+                        <div class="property-left-column" data-reveal="fade-right">
+                            <div class="property-description">
+                                <h3 class="subsection-title">Sobre a Propriedade</h3>
+                                <div id="prop-description" class="editorial-text formatted-content">
+                                    <!-- Text populated by JS -->
+                                    <p>A carregar descrição detalhada...</p>
+                                </div>
+                            </div>
+
+                            <div class="property-features" style="margin-top: 4rem;">
+                                <h3 class="subsection-title">Características</h3>
+                                <ul class="features-list" id="prop-features">
+                                    <!-- List populated by JS -->
+                                    <li>A carregar...</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT COLUMN: Gallery -->
+                        <div class="property-right-column" id="gallery-container" style="display: none;"
+                            data-reveal="fade-left">
+                            <h3 class="subsection-title">Galeria</h3>
+
+                            <div class="gallery-carousel-wrapper">
+                                <div class="property-gallery-carousel" id="prop-gallery">
+                                    <!-- Imgs populated by JS -->
+                                </div>
+                                <div class="gallery-counter">
+                                    <span id="current-slide">1</span> / <span id="total-slides">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT FORM FOR THIS PROPERTY -->
+            <section class="section contact-section" id="contact" style="padding-top: 5rem;">
+                <div class="container">
+                    <div class="contact-glass-card" data-reveal="scale-up">
+                        <h2 class="section-title text-center" style="font-size: 3rem;">Interessado neste imóvel?</h2>
+                        <p class="contact-subtitle text-center">Preencha o formulário para agendar uma visita ou
+                            solicitar mais informações.</p>
+
+                        <form class="contact-form centered-form">
+                            <!-- Hidden input to track which property they are asking about -->
+                            <input type="hidden" id="inquiry-property-id" value="">
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="name" required placeholder=" ">
+                                    <label for="name">Nome</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" id="phone" required placeholder=" ">
+                                    <label for="phone">Telefone</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" required placeholder=" ">
+                                <label for="email">E-mail</label>
+                            </div>
+                            <button type="submit" class="submit-btn full-width">
+                                <span>Solicitar Visita</span>
+                                <div class="btn-line"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div class="container">
+                    <div class="footer-content">
+                        <span>Rodrigo Fernando &copy; 2024</span>
+                        <span>Century 21 Rise and Shine | Mafra</span>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- Include GSAP normally for animations, this is usually what was used or it's just CSS relying on scroll listener inside script.js -->
+    <script src="script.js"></script>
+    <script>
+        // INTEGRACÃO n8n + NOTION
+        // Coloca aqui o URL do teu Webhook do n8n para ir buscar 1 imóvel (GET)
+        // O n8n deve receber o ID na query string (ex: ?id=xxx) e devolver o JSON do imóvel.
+        const N8N_PROPERTY_WEBHOOK_URL = 'https://n8n.digitalkeys.pt/webhook/imovel'; // URL do Webhook do n8n (Detalhe)
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const propertyId = urlParams.get('id');
+
+            if (!propertyId) {
+                document.getElementById('prop-title').innerText = 'Explore a nossa coleção';
+                document.getElementById('prop-location').innerText = 'Selecione um imóvel para ver mais detalhes.';
+                return;
+            }
+
+            document.getElementById('inquiry-property-id').value = propertyId;
+
+            try {
+                let prop = null;
+
+                if (N8N_PROPERTY_WEBHOOK_URL) {
+                    const response = await fetch(`${N8N_PROPERTY_WEBHOOK_URL}?id=${propertyId}`);
+                    if (!response.ok) throw new Error('Falha ao conectar ao n8n');
+                    const data = await response.json();
+                    // Handle array response or object wrapper (prevent crash if data is null)
+                    if (data) {
+                        prop = Array.isArray(data) ? data[0] : (data.imovel || data.data || data);
+                    }
+                } else {
+                    // MOCK DATA PARA DEMONSTRAÇÃO VISUAL ATE COLOCAR O WEBHOOK
+                    // Este mock simula o que o Notion/n8n deve devolver
+                    const mockDB = {
+                        '1': {
+                            id: '1', title: 'Moradia T4 Luxo', location: 'Ericeira', price: '1.250.000€',
+                            area: '340 m²', rooms: 'T4', baths: '5', energy: 'A+',
+                            description: '<p>Uma obra-prima da arquitetura contemporânea, situada no coração da Ericeira. Esta moradia de luxo oferece vistas deslumbrantes para o oceano, acabamentos de classe mundial e um design pensado para o máximo conforto e privacidade.</p><p>Com amplas áreas de convívio, cozinha totalmente equipada em plano aberto, e uma zona exterior com infinity pool e fire pit, este imóvel redefine o conceito de viver bem.</p>',
+                            features: ['Piscina Infinita', 'Vista Mar', 'Painéis Solares', 'Garagem 3 Carros', 'Domótica Premium', 'Jardim Paisagístico'],
+                            images: ['assets/RF/Fotografia-423.jpg', 'assets/RF/Fotografia-306.jpg', 'assets/RF/Fotografia-254.jpg', 'assets/RF/Fotografia-301.jpg']
+                        },
+                        '2': {
+                            id: '2', title: 'Apartamento Premium', location: 'Mafra', price: '450.000€',
+                            area: '145 m²', rooms: 'T3', baths: '3', energy: 'A',
+                            description: '<p>Apartamento de prestígio no centro de Mafra, combinando sofisticação urbana com acessibilidade irrepreensível. Acabamentos nobres, áreas generosas e uma varanda ampla para desfrutar do final de tarde.</p>',
+                            features: ['Varanda Ampla', 'Ar Condicionado Oculto', 'Cozinha Gourmet', '2 Lugares de Parqueamento'],
+                            images: ['assets/RF/Fotografia-301.jpg', 'assets/RF/Fotografia-484bw.jpg']
+                        },
+                        '3': {
+                            id: '3', title: 'Villa Contemporânea', location: 'Sintra', price: '2.100.000€',
+                            area: '450 m²', rooms: 'T5', baths: '6', energy: 'A+',
+                            description: '<p>Refúgio de luxo isolado na tranquilidade da Serra de Sintra. Harmoniza a natureza exuberante com uma arquitetura brutalista elegante e envidraçados imponentes.</p>',
+                            features: ['Lote de 5000m²', 'Adega Climatizada', 'Ginásio Privado', 'Guest House', 'Piscina Exterior Aquecida'],
+                            images: ['assets/RF/Fotografia-254.jpg', 'assets/RF/Fotografia-306.jpg', 'assets/RF/Fotografia-423.jpg']
+                        }
+                    };
+                    prop = mockDB[propertyId];
+                }
+
+                if (!prop) {
+                    document.getElementById('prop-title').innerText = 'Imóvel não encontrado';
+                    document.getElementById('prop-location').innerText = 'Este imóvel pode já não estar disponível.';
+                    return;
+                }
+
+                // Populate DOM
+                document.getElementById('prop-main-img').src = prop.images && prop.images.length > 0 ? prop.images[0] : 'assets/placeholder.jpg';
+                document.getElementById('prop-title').innerText = prop.title;
+                document.getElementById('prop-location').innerText = prop.location;
+
+                if (prop.price) document.getElementById('prop-price').innerText = prop.price;
+                if (prop.area) document.getElementById('prop-area').innerText = prop.area;
+                if (prop.rooms) document.getElementById('prop-rooms').innerText = prop.rooms;
+                if (prop.baths) document.getElementById('prop-baths').innerText = prop.baths;
+                if (prop.energy) document.getElementById('prop-energy').innerText = prop.energy;
+
+                if (prop.description) document.getElementById('prop-description').innerHTML = prop.description;
+
+                if (prop.features && prop.features.length > 0) {
+                    document.getElementById('prop-features').innerHTML = prop.features.map(f => `<li>${f}</li>`).join('');
+                } else {
+                    document.getElementById('prop-features').innerHTML = '<li>Informação não disponível</li>';
+                }
+
+                if (prop.images && prop.images.length > 1) {
+                    document.getElementById('gallery-container').style.display = 'block';
+                    const galleryGrid = document.getElementById('prop-gallery');
+                    galleryGrid.innerHTML = '';
+
+                    const galleryImages = prop.images.slice(1);
+                    document.getElementById('total-slides').innerText = galleryImages.length;
+
+                    galleryImages.forEach((img, index) => {
+                        galleryGrid.innerHTML += `<div class="gallery-item"><img src="${img}" alt="Galeria ${index + 1}"></div>`;
+                    });
+
+                    // Setup scroll tracker for the counter
+                    galleryGrid.addEventListener('scroll', () => {
+                        // The gallery slides contain gaps and padding, but scrollLeft + width check works best
+                        const slideWidth = galleryGrid.clientWidth;
+                        const scrollPosition = galleryGrid.scrollLeft;
+                        const currentIndex = Math.round(scrollPosition / slideWidth) + 1;
+                        document.getElementById('current-slide').innerText = currentIndex;
+                    });
+                }
+
+                document.title = `${prop.title} | Rodrigo Fernando`;
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('prop-title').innerText = 'Erro ao carregar';
+                document.getElementById('prop-location').innerText = 'Tente novamente mais tarde.';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -28,46 +28,113 @@ document.addEventListener('DOMContentLoaded', () => {
         animateCursor();
     }
 
-    // Parallax Effect
+    // Parallax Effect & Navbar Scroll
     const parallaxImages = document.querySelectorAll('.parallax-img');
+    const navbar = document.querySelector('.navbar');
 
+    let isScrolling = false;
     window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                const scrolled = window.pageYOffset;
 
-        parallaxImages.forEach(img => {
-            const speed = 0.15;
-            const limit = img.parentElement.offsetTop;
-            const offset = (scrolled - limit) * speed;
+                if (navbar) {
+                    if (scrolled > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                }
 
-            // Only animate if in view (simple check)
-            if (scrolled + window.innerHeight > limit) {
-                img.style.transform = `translateY(${offset}px)`;
-            }
-        });
+                parallaxImages.forEach(img => {
+                    const speed = 0.15;
+                    const limit = img.parentElement.offsetTop;
+                    const offset = (scrolled - limit) * speed;
+
+                    // Only animate if in view (simple check)
+                    if (scrolled + window.innerHeight > limit) {
+                        img.style.transform = `translateY(${offset}px)`;
+                    }
+                });
+
+                isScrolling = false;
+            });
+            isScrolling = true;
+        }
     });
 
     // Reveal Animations on Scroll
     const observerOptions = {
-        threshold: 0.1
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('is-revealed');
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Add fade-in classes to elements
-    const elementsToAnimate = document.querySelectorAll('.section-title, .editorial-text, .service-item, .big-contact-title');
+    // Observe all elements with data-reveal attribute
+    const elementsToAnimate = document.querySelectorAll('[data-reveal]');
+    elementsToAnimate.forEach(el => observer.observe(el));
 
-    elementsToAnimate.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(50px)';
-        el.style.transition = 'opacity 1s ease, transform 1s ease';
-        observer.observe(el);
-    });
+    // N8N Contact Form Integration
+    const contactForm = document.getElementById('contactForm');
+    const CONTACT_WEBHOOK_URL = 'https://n8n.digitalkeys.pt/webhook/leads'; // URL DO WEBHOOK DE PRODUCAO N8N PARA O CONTACTO
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nameInput = document.getElementById('name').value;
+            const phoneInput = document.getElementById('phone').value;
+            const emailInput = document.getElementById('email').value;
+
+            // Feedback visual ao enviar
+            const submitBtn = contactForm.querySelector('.submit-btn span');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'A Enviar...';
+
+            const payload = {
+                name: nameInput,
+                phone: phoneInput,
+                email: emailInput,
+                timestamp: new Date().toISOString()
+            };
+
+            // Se ainda não houver Webhook (para testes)
+            if (!CONTACT_WEBHOOK_URL) {
+                console.log('Dados do formulário interceptados:', payload);
+                alert('Tudo pronto do lado do site! (Configure o CONTACT_WEBHOOK_URL em script.js para enviar para o n8n)');
+                submitBtn.innerText = originalText;
+                contactForm.reset();
+                return;
+            }
+
+            // Envio real
+            try {
+                const response = await fetch(CONTACT_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    alert('As suas informações foram recebidas. Entraremos em contacto brevemente.');
+                    contactForm.reset();
+                } else {
+                    throw new Error('Ocorreu um problema.');
+                }
+            } catch (err) {
+                console.error('Erro ao comunicar com o n8n no formulário:', err);
+                alert('Infelizmente, ocorreu um erro. Por favor tente novamente mais tarde.');
+            } finally {
+                submitBtn.innerText = originalText;
+            }
+        });
+    }
 });

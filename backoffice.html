@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backoffice | Rodrigo Fernando</title>
+    <!-- Removed style.css dependency to avoid conflicts and cursor issues -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Standalone Reset & Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: auto;
+            /* Force default cursor */
+        }
+
+        body {
+            background-color: #111;
+            color: #f0f0f0;
+            font-family: 'Outfit', sans-serif;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1,
+        h2 {
+            margin-bottom: 25px;
+            font-weight: 500;
+            color: #cda45e;
+            /* Accent color */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 0;
+        }
+
+        .section {
+            background: #1e1e1e;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #aaa;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 15px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #cda45e;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        input[type="file"] {
+            background: #2a2a2a;
+            padding: 10px;
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid #444;
+        }
+
+        button {
+            background: #cda45e;
+            color: #000;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: opacity 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        /* List Properties */
+        .property-list {
+            list-style: none;
+        }
+
+        .property-item {
+            background: #2a2a2a;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #cda45e;
+        }
+
+        .property-info strong {
+            display: block;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .property-info span {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .delete-btn {
+            background: #cf3030;
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            margin-left: 20px;
+        }
+
+        .delete-btn:hover {
+            background: #a02020;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Backoffice de Gestão</h1>
+
+        <!-- Add New -->
+        <div class="section">
+            <h2>Adicionar Novo Imóvel</h2>
+            <form id="add-form">
+                <div class="form-group">
+                    <label>Título do Imóvel</label>
+                    <input type="text" name="title" required placeholder="Ex: Moradia de Luxo no Guincho">
+                </div>
+                <div class="form-group">
+                    <label>Localização</label>
+                    <input type="text" name="location" required placeholder="Ex: Cascais, Portugal">
+                </div>
+                <div class="form-group">
+                    <label>Preço</label>
+                    <input type="text" name="price" required placeholder="Ex: 2.500.000 €">
+                </div>
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea name="description" required placeholder="Descrição detalhada do imóvel..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Características (uma por linha)</label>
+                    <textarea name="features" placeholder="Vista de Mar&#10;Piscina&#10;Garagem&#10;Jardim"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Imagens (Selecione múltiplas)</label>
+                    <input type="file" name="images" multiple accept="image/*">
+                </div>
+                <button type="submit">Adicionar Imóvel</button>
+            </form>
+        </div>
+
+        <!-- List -->
+        <div class="section">
+            <h2>Imóveis Publicados</h2>
+            <ul id="property-list" class="property-list">
+                <!-- Items here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = '/api/properties';
+
+        // Fetch and Render
+        async function loadProperties() {
+            try {
+                const res = await fetch(API_URL);
+                const properties = await res.json();
+                const list = document.getElementById('property-list');
+                list.innerHTML = '';
+
+                if (properties.length === 0) {
+                    list.innerHTML = '<li style="color: #666; text-align: center;">Nenhum imóvel encontrado.</li>';
+                    return;
+                }
+
+                properties.forEach(prop => {
+                    const li = document.createElement('li');
+                    li.className = 'property-item';
+                    li.innerHTML = `
+                        <div class="property-info">
+                            <strong>${prop.title}</strong>
+                            <span>${prop.location} • ${prop.price}</span>
+                        </div>
+                        <button class="delete-btn" onclick="deleteProperty('${prop.id}')">Eliminar</button>
+                    `;
+                    list.appendChild(li);
+                });
+            } catch (err) {
+                console.error("Error loading properties", err);
+            }
+        }
+
+        // Add Property
+        document.getElementById('add-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+
+            btn.innerText = "A guardar...";
+            btn.disabled = true;
+
+            const formData = new FormData();
+
+            // Build data object
+            const data = {
+                title: form.title.value,
+                location: form.location.value,
+                price: form.price.value,
+                description: form.description.value,
+                features: form.features.value.split('\n').filter(line => line.trim() !== '')
+            };
+
+            // Append data as JSON string
+            formData.append('data', JSON.stringify(data));
+
+            // Append images
+            const fileInput = form.images;
+            for (let i = 0; i < fileInput.files.length; i++) {
+                formData.append('images', fileInput.files[i]);
+            }
+
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (res.ok) {
+                    alert('Imóvel adicionado com sucesso!');
+                    form.reset();
+                    loadProperties();
+                } else {
+                    alert('Erro ao guardar imóvel.');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Erro de conexão.');
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        // Delete Property
+        async function deleteProperty(id) {
+            if (!confirm('Tem a certeza que deseja eliminar este imóvel? Esta ação não pode ser desfeita.')) return;
+
+            try {
+                const res = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+                if (res.ok) loadProperties();
+                else alert('Erro ao eliminar.');
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // Initial Load
+        loadProperties();
+    </script>
+</body>
+
+</html>
