@@ -1,0 +1,7 @@
+node_modules/
+.agent/
+*.log
+trace.txt
+trace2.txt
+.DS_Store
+.env
